@@ -1,0 +1,24 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('../..images/background-banner.jpg');">
+  <h1>All restaurants</h1>
+</div>
+<div class="container">
+  <ul>
+    <% @restaurants.each do |restaurant| %>
+      <li>
+        <div style="font-size: 24px">
+          <%= link_to restaurant.name, restaurant_path(restaurant) %>
+          <%= link_to edit_restaurant_path(restaurant) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          |
+          <%= link_to restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?'} do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+        <div><em><%= "#{restaurant.category.capitalize} food" %></em></div>
+      </li>
+    <% end %>
+  </ul>
+  <hr>
+  <%= link_to 'Add a restaurant', new_restaurant_path %>
+</div>
